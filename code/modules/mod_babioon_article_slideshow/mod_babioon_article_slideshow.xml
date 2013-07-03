@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension
+	type="module"
+	version="2.5"
+	client="site"
+	method="upgrade">
+	<name>Babioon Article Slideshow</name>
+	<author>Robert Deutz</author>
+	<creationDate>June 2012</creationDate>
+	<copyright>Robert Deutz Business Solution</copyright>
+	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
+	<authorEmail>contact@babioon.com</authorEmail>
+	<authorUrl>www.babioon.com</authorUrl>
+	<version>3.0.0</version>
+	<description>The Responsive (RWD) Bootstrap Slideshow Module will display a fixed number of articles from a specific category. You will need to add the images, alt text and caption text into the article paramaters under the Images and links - Full article section.</description>
+	<files>
+		<filename module="mod_babioon_article_slideshow">mod_babioon_article_slideshow.php</filename>
+		<folder>tmpl</folder>
+		<filename>helper_com_content.php</filename>
+		<filename>helper_com_k2.php</filename>
+		<filename>mod_babioon_article_slideshow.xml</filename>
+		<folder>css</folder>
+		<folder>elements</folder>
+		<folder>js</folder>
+	</files>
+
+	<config addfieldpath="/modules/mod_babioon_article_slideshow/elements">
+		<fields name="params">
+
+			<fieldset name="basic">
+				<field
+					name="source"
+					type="list"
+					default="com_content"
+					label="Source"
+					description="Select to source for the slider">
+					<option
+						value="com_content">Joomla-Content</option>
+					<option
+						value="com_k2">K2</option>
+				</field>
+
+                <field
+                	name="autostart"
+                	type="radio"
+                	default="1"
+                	label="autostart"
+                	description="">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+
+                <field
+                	name="autoid"
+                	type="radio"
+                	default="1"
+                	label="autoid"
+                	description="Create a id from the module id and the string mycarousel -> e.g. mycarousel234">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+
+                <field
+                	name="linktitle"
+                	type="radio"
+                	default="1"
+                	label="Link Title"
+                	description="Link the title to the article">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+
+                <field
+                	name="linkimage"
+                	type="radio"
+                	default="0"
+                	label="Link Image"
+                	description="Link the image to the article">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+
+                <field
+                	name="control"
+                	type="radio"
+                	default="1"
+                	label="control"
+                	description="Show prev and next arrows">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+
+                <field
+                	name="indicator"
+                	type="radio"
+                	default="0"
+                	label="indicator"
+                	description="Show slide indicator">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+
+			</fieldset>
+
+			<fieldset name="Joomla-Content" label="MOD_BABIOON_ARTICLE_SLIDESHOW_JOOMLA_CONTENT">
+				<field
+					name="catid"
+					type="category"
+					extension="com_content"
+					multiple="true"
+					default=""
+					size="10"
+					label="JCATEGORY"
+					description="Select Articles from a specific Category or a set of Categories. If no selection will show all categories as default" >
+					<option value="">JOPTION_ALL_CATEGORIES</option>
+				</field>
+
+				<field
+					name="article_id"
+					type="text"
+					default=""
+					label="IDs Articles"
+					description="IDs Articles" />
+
+				<field
+					name="count"
+					type="text"
+					default="5"
+					label="Number of Articles"
+					description="The number of Articles to display within this module" />
+
+				<field
+					name="ordering"
+					type="list"
+					default="a.publish_up"
+					label="Order Results"
+					description="Select the order in which you want query results presented.">
+					<option
+						value="a.publish_up">Published Date</option>
+					<option
+						value="a.created">Created Date</option>
+					<option
+						value="a.ordering">Ordering</option>
+					<option
+						value="rand()">Random</option>
+				</field>
+
+			</fieldset>
+
+			<fieldset name="K2-Content" label="MOD_BABIOON_ARTICLE_SLIDESHOW_K2_CONTENT">
+
+                <field
+                	name="k2_categories"
+                	type="k2multicategories"
+                	extension="k2multicategories"
+                	default=""
+                	size="50"
+                	multiple="multiple"
+                	label="K2 Categories"
+                	description="K2 Categories"
+                />
+
+                <field
+                	name="k2_tags"
+                	type="k2tags"
+                	extension="k2tags"
+                	default=""
+                	size="25"
+                	multiple="true"
+                	label="K2 Tags"
+                	description="K2 tags"
+                />
+
+				<field
+					name="k2_article_id"
+					type="text"
+					default=""
+					label="IDs Articles"
+					description="IDs Articles" />
+
+				<field
+					name="k2_count"
+					type="text"
+					default="5"
+					label="Number of Articles"
+					description="The number of Articles to display within this module" />
+
+				<field
+					name="k2_ordering"
+					type="list"
+					default="publish_up"
+					label="Order Results"
+					description="Select the order in which you want query results presented.">
+					<option
+						value="publish_up">Published Date</option>
+					<option
+						value="created">Created Date</option>
+					<option
+						value="ordering">Ordering</option>
+					<option
+						value="rand">Random</option>
+				</field>
+
+				<field
+					name="k2_featured"
+					type="list"
+					default="2"
+					label="Featured"
+					description="Select if featured articles should be included in the list of articles">
+					<option
+						value="1">JYES</option>
+					<option
+						value="0">JNO</option>
+					<option
+						value="2">Only</option>
+				</field>
+
+				<field
+					name="k2_picture"
+					type="list"
+					default=""
+					label="Picture Size"
+					description="Select the size of the used K2 picture">
+					<option
+						value="">SOURCE</option>
+					<option
+						value="_Generic">GENERIC</option>
+					<option
+						value="_XS">XS</option>
+					<option
+						value="_S">S</option>
+					<option
+						value="_M">M</option>
+					<option
+						value="_L">L</option>
+					<option
+						value="_XL">XL</option>
+				</field>
+
+
+			</fieldset>
+
+			<fieldset
+				name="advanced">
+				<field
+					name="layout"
+					type="modulelayout"
+					label="JFIELD_ALT_LAYOUT_LABEL"
+					description="JFIELD_ALT_MODULE_LAYOUT_DESC" />
+
+				<field
+					name="moduleclass_sfx"
+					type="text"
+					label="COM_MODULES_FIELD_MODULECLASS_SFX_LABEL"
+					description="COM_MODULES_FIELD_MODULECLASS_SFX_DESC" />
+
+                <field
+                	name="inherent_span"
+                	type="radio"
+                	default="1"
+                	label="Inherent Span"
+                	description="Inherent span allows to set to span in the moduletable but span will not be used in child classes">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+
+				<field
+					name="cache"
+					type="list"
+					default="1"
+					label="COM_MODULES_FIELD_CACHING_LABEL"
+					description="COM_MODULES_FIELD_CACHING_DESC">
+					<option
+						value="1">JGLOBAL_USE_GLOBAL</option>
+					<option
+						value="0">COM_MODULES_FIELD_VALUE_NOCACHING</option>
+				</field>
+
+				<field
+					name="cache_time"
+					type="text"
+					default="900"
+					label="COM_MODULES_FIELD_CACHE_TIME_LABEL"
+					description="COM_MODULES_FIELD_CACHE_TIME_DESC" />
+
+				<field
+					name="cachemode"
+					type="hidden"
+					default="itemid">
+					<option
+						value="itemid"></option>
+				</field>
+
+			</fieldset>
+		</fields>
+	</config>
+</extension>
